@@ -4,7 +4,7 @@
 }
 
 .jumbotron {
-    color: whitesmoke;
-    background-color: black;
+    color: white;
+    background-color: black !important;
     text-align: center;
 }
