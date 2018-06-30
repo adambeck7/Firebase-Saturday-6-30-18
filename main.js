@@ -11,7 +11,8 @@
 
 // // Create a variable to reference the database.
 // var database = firebase.database();
-
+// on child-add unction
+// $(#full - member - list).append("<p class='well'><span class")
 
 
 // Firebase Documentation: 
@@ -138,4 +139,4 @@
 //         // Alert
 //         alert("Sorry that bid is too low. Try again.");
 //     }
-// });
+// });+

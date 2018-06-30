@@ -17,7 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 
 
-    <script src="main.js">
+    <!--<script src="main.js">-->
     </script>
 </head>
 
@@ -88,24 +88,19 @@
                     role: roleVal,
                     date: dateVal,
                     rate: rateInt,
+                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                    ///<!-- dateadded: timestamp -->
+                }); // $("#name").empty(); // $("#role").empty(); // $("#date").empty(); // $("#rate").empty(); 
+
+            });
+
+            database.ref().on("child_added",
+                function (childSnapshot) {
+                    console.log(childSnapshot.val().name);
+                    console.log(childSnapshot.val().role);
+                    console.log(childSnapshot.val().date);
+                    console.log(childSnapshot.val().rate);
                 });
-                $("#name").empty();
-                $("#role").empty();
-                $("#date").empty();
-                $("#rate").empty();
-
-            });
-
-            // database.ref("users").orderBykey();
-            // query.once("value")
-            // // key will be "ada" the first time and "alan" the second time
-            var key = childSnapshot.key;
-            // childData will be the actual contents of the child
-            var childData = childSnapshot.val();
-            });
-            // then.(function (snapshot) {
-            //             snapshot.forEach(funciton(childSNapshot) {})
-            //         }
         </script>
 </body>
 
