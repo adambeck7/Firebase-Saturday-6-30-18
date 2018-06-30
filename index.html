@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Saturday's Group Thing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -16,38 +16,50 @@
 </head>
 
 <body>
-    <div class="jumbotron">Employee Time Sheet</div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display">Employee Time Sheet</h1>
+        </div>
 
+        <div class=" form-group ">
+            <h5 class="form-title ">Add Employee</h5>
+            <label for="formGroupExampleInput ">Employee Name:</label>
+            <input type="text " class="form-control " id="formGroupExampleInput " placeholder="Example input ">
+        </div>
+        <div class="form-group ">
+            <label for="formGroupExampleInput2 ">Role:</label>
+            <input type="text " class="form-control " id="formGroupExampleInput2 " placeholder="Another input ">
+        </div>
+        <div class="form-group ">
+            <label for="formGroupExampleInput ">Start Date (MM/DD/YYYY):</label>
+            <input type="text " class="form-control " id="formGroupExampleInput " placeholder="Example input ">
+        </div>
+        <div class="form-group ">
+            <label for="formGroupExampleInput2 ">Monthly Rate:</label>
+            <input type="text " class="form-control " id="formGroupExampleInput2 " placeholder="Another input ">
+            <br>
+            <button type="button " class="btn btn-primary btn-md ">Submit</button>
 
+        </div>
+        </form>
 
-    <div class="form-group">
-        <h5 class="form-title">Add Employee</h5>
-        <label for="formGroupExampleInput">Employee Name:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Role:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput">Start Date (MM/DD/YYYY):</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Monthly Rate:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-        <br>
-        <button type="button" class="btn btn-primary btn-md">Submit</button>
-        <button type="button" class="btn btn-secondary btn-md">Clear Results</button>
-    </div>
-    </form>
+        <div class="container ">
+            <h5>Current Employees</h5>
+            r>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Role</th>
+                        <th>Start Date</th>
+                        <th>Months Worked</th>
+                        <th>Monthly Rate ($)</th>
+                        <th>Total Billed ($)</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
-    <div class="container"></div>
-    <table>
-        <label for="name">Employee Name</label>
-        <input id="name" placeholder="John Doe">
-    </table>
-    </div>
 </body>
 
 </html>
