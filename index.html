@@ -49,7 +49,7 @@
         <div class="container ">
             <h5>Current Employees</h5>
             <hr>
-            <table class="table ">
+            <table class="table" id="table">
                 <thead>
                     <tr>
                         <th>Employee Name</th>
@@ -100,6 +100,13 @@
                     console.log(childSnapshot.val().role);
                     console.log(childSnapshot.val().date);
                     console.log(childSnapshot.val().rate);
+
+                    var newRow = $("<tr>");
+                    $(newRow).html("<td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role +
+                        "</td><td>" +
+                        childSnapshot.val().date + "</td><td>" + childSnapshot.val().rate + "</td>")
+
+                    $("#table").append(newRow);
                 });
         </script>
 </body>
