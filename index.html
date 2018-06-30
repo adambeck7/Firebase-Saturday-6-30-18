@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+
+
     <script src="main.js">
     </script>
 </head>
@@ -23,30 +29,27 @@
 
         <div class=" form-group ">
             <h5 class="form-title ">Add Employee</h5>
-            <label for="formGroupExampleInput ">Employee Name:</label>
-            <input type="text " class="form-control " id="formGroupExampleInput " placeholder="Example input ">
+            <label for="name">Employee Name:</label>
+            <input type="text " class="form-control " id="name" placeholder="John Doe">
         </div>
         <div class="form-group ">
-            <label for="formGroupExampleInput2 ">Role:</label>
-            <input type="text " class="form-control " id="formGroupExampleInput2 " placeholder="Another input ">
+            <label for="role">Role:</label>
+            <input type="text " class="form-control " id="role" placeholder="Software Developer">
         </div>
         <div class="form-group ">
-            <label for="formGroupExampleInput ">Start Date (MM/DD/YYYY):</label>
-            <input type="text " class="form-control " id="formGroupExampleInput " placeholder="Example input ">
+            <label for="date">Start Date (MM/DD/YYYY):</label>
+            <input type="text " class="form-control " id="date" placeholder="04/29/1994">
         </div>
         <div class="form-group ">
-            <label for="formGroupExampleInput2 ">Monthly Rate:</label>
-            <input type="text " class="form-control " id="formGroupExampleInput2 " placeholder="Another input ">
+            <label for="rate">Monthly Rate:</label>
+            <input type="text" class="form-control" id="rate" placeholder="3000">
             <br>
-            <button type="button " class="btn btn-primary btn-md ">Submit</button>
-
+            <button id="submitTime" type="button " class="btn btn-primary btn-md ">Submit</button>
         </div>
-        </form>
-
         <div class="container ">
             <h5>Current Employees</h5>
-            r>
-            <table class="table">
+            <hr>
+            <table class="table ">
                 <thead>
                     <tr>
                         <th>Employee Name</th>
@@ -58,8 +61,52 @@
                     </tr>
                 </thead>
             </table>
-        </div>
 
+        </div>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD2VBpQc7tRb7NyjUaDzCrJjAh7iZZiMCU",
+                authDomain: "saturday-project-6-30-18.firebaseapp.com",
+                databaseURL: "https://saturday-project-6-30-18.firebaseio.com",
+                projectId: "saturday-project-6-30-18",
+                storageBucket: "saturday-project-6-30-18.appspot.com",
+                messagingSenderId: "720901829896"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+
+            $("#submitTime").on("click", function () {
+                event.preventDefault();
+                var nameVal = $("#name").val().trim();
+                var roleVal = $("#role").val().trim();
+                var dateVal = $("#date").val().trim();
+                var rateStr = $("#rate").val().trim();
+                var rateInt = parseInt(rateStr);
+                database.ref().push({
+                    name: nameVal,
+                    role: roleVal,
+                    date: dateVal,
+                    rate: rateInt,
+                });
+                $("#name").empty();
+                $("#role").empty();
+                $("#date").empty();
+                $("#rate").empty();
+
+            });
+
+            // database.ref("users").orderBykey();
+            // query.once("value")
+            // // key will be "ada" the first time and "alan" the second time
+            var key = childSnapshot.key;
+            // childData will be the actual contents of the child
+            var childData = childSnapshot.val();
+            });
+            // then.(function (snapshot) {
+            //             snapshot.forEach(funciton(childSNapshot) {})
+            //         }
+        </script>
 </body>
 
 </html>
