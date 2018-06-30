@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Saturday's Group Thing</title>
+    <title>Employee Time Sheet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -99,16 +99,32 @@
 
             database.ref().on("child_added",
                 function (childSnapshot) {
-                    console.log(childSnapshot.val().name);
-                    console.log(childSnapshot.val().role);
-                    console.log(childSnapshot.val().date);
-                    console.log(childSnapshot.val().rate);
+
+                    var inputDate = childSnapshot.val().date;
+
+                    var formatted = moment(inputDate).format("MMDDYYYY");
+
+                    var date = moment(inputDate, "MMDDYYYY");
+
+                    var currentTime = moment();
+
+                    var difference = currentTime.diff(date, 'months');
+
+
+                    var totalBilled = difference * childSnapshot.val().rate;
+                    //console.log(difference);
+
+                    // console.log(childSnapshot.val().name);
+                    // console.log(childSnapshot.val().role);
+                    // console.log(childSnapshot.val().date);
+                    // console.log(childSnapshot.val().rate);
 
                     var newRow = $("<tr>");
-                    $(newRow).html("<td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role +
+                    $(newRow).html("<td>" + childSnapshot.val().name + "</td><td>" +
+                        childSnapshot.val().role +
                         "</td><td>" +
                         childSnapshot.val().date +
-                        "</td><td class='months-worked'></td><td>" + childSnapshot.val().rate +
+                        "</td><td>" + difference + "</td><td>" + childSnapshot.val().rate +
                         " </td>"
                     )
 
