@@ -29,30 +29,31 @@
         <div class="jumbotron">
             <h1 class="display">Employee Time Sheet</h1>
         </div>
-
-        <div class=" form-group ">
-            <h5 class="form-title ">Add Employee</h5>
-            <label for="name">Employee Name:</label>
-            <input type="text " class="form-control " id="name" placeholder="John Doe">
-        </div>
-        <div class="form-group ">
-            <label for="role">Role:</label>
-            <input type="text " class="form-control " id="role" placeholder="Software Developer">
-        </div>
-        <div class="form-group ">
-            <label for="date">Start Date (MM/DD/YYYY):</label>
-            <input type="text " class="form-control " id="date" placeholder="04/29/1994">
-        </div>
-        <div class="form-group ">
-            <label for="rate">Monthly Rate:</label>
-            <input type="text" class="form-control" id="rate" placeholder="3000">
-            <br>
-            <button id="submitTime" type="button " class="btn btn-primary btn-md ">Submit</button>
-        </div>
+        <form id="myform">
+            <div class=" form-group ">
+                <h5 class="form-title ">Add Employee</h5>
+                <label for="name ">Employee Name:</label>
+                <input type="text " class="form-control " id="name " placeholder="John Doe ">
+            </div>
+            <div class="form-group ">
+                <label for="role ">Role:</label>
+                <input type="text " class="form-control " id="role " placeholder="Software Developer ">
+            </div>
+            <div class="form-group ">
+                <label for="date ">Start Date (MM/DD/YYYY):</label>
+                <input type="text " class="form-control " id="date " placeholder="04/29/1994 ">
+            </div>
+            <div class="form-group ">
+                <label for="rate ">Monthly Rate:</label>
+                <input type="text " class="form-control " id="rate " placeholder="3000 ">
+                <br>
+                <button id="submitTime " type="button " class="btn btn-primary btn-md ">Submit</button>
+            </div>
+        </form>
         <div class="container ">
             <h5>Current Employees</h5>
             <hr>
-            <table class="table" id="table">
+            <table class="table " id="table ">
                 <thead>
                     <tr>
                         <th>Employee Name</th>
@@ -69,22 +70,22 @@
         <script>
             // Initialize Firebase
             var config = {
-                apiKey: "AIzaSyD2VBpQc7tRb7NyjUaDzCrJjAh7iZZiMCU",
-                authDomain: "saturday-project-6-30-18.firebaseapp.com",
-                databaseURL: "https://saturday-project-6-30-18.firebaseio.com",
-                projectId: "saturday-project-6-30-18",
-                storageBucket: "saturday-project-6-30-18.appspot.com",
-                messagingSenderId: "720901829896"
+                apiKey: "AIzaSyD2VBpQc7tRb7NyjUaDzCrJjAh7iZZiMCU ",
+                authDomain: "saturday-project-6-30-18.firebaseapp.com ",
+                databaseURL: "https://saturday-project-6-30-18.firebaseio.com ",
+                projectId: "saturday-project-6-30-18 ",
+                storageBucket: "saturday-project-6-30-18.appspot.com ",
+                messagingSenderId: "720901829896 "
             };
             firebase.initializeApp(config);
             var database = firebase.database();
 
-            $("#submitTime").on("click", function () {
+            $("#submitTime ").on("click ", function () {
                 event.preventDefault();
-                var nameVal = $("#name").val().trim();
-                var roleVal = $("#role").val().trim();
-                var dateVal = $("#date").val().trim();
-                var rateStr = $("#rate").val().trim();
+                var nameVal = $("#name ").val().trim();
+                var roleVal = $("#role ").val().trim();
+                var dateVal = $("#date ").val().trim();
+                var rateStr = $("#rate ").val().trim();
                 var rateInt = parseInt(rateStr);
                 database.ref().push({
                     name: nameVal,
@@ -93,18 +94,27 @@
                     rate: rateInt,
                     dateAdded: firebase.database.ServerValue.TIMESTAMP
                     ///<!-- dateadded: timestamp -->
-                }); // $("#name").empty(); // $("#role").empty(); // $("#date").empty(); // $("#rate").empty(); 
+                }); // $("#name ").empty(); // $("#role ").empty(); // $("#date ").empty(); // $("#rate ").empty(); 
+                $("#myform").validate({
+                    rules: {
+                        field: {
+                            required: true,
+                            date: true
+                        }
+                    }
+                });
+
 
             });
 
-            database.ref().on("child_added",
+            database.ref().on("child_added ",
                 function (childSnapshot) {
 
                     var inputDate = childSnapshot.val().date;
 
-                    var formatted = moment(inputDate).format("MMDDYYYY");
+                    //var formatted = moment(inputDate).format("MMDDYYYY ");
 
-                    var date = moment(inputDate, "MMDDYYYY");
+                    var date = moment(inputDate, "MMDDYYYY ");
 
                     var currentTime = moment();
 
@@ -120,13 +130,10 @@
                     // console.log(childSnapshot.val().rate);
 
                     var newRow = $("<tr>");
-                    $(newRow).html("<td>" + childSnapshot.val().name + "</td><td>" +
-                        childSnapshot.val().role +
-                        "</td><td>" +
-                        childSnapshot.val().date +
-                        "</td><td>" + difference + "</td><td>" + childSnapshot.val().rate +
-                        " </td>"
-                    )
+
+                    $(newRow).html("<td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role +
+                        "</td><td>" + childSnapshot.val().date + "</td><td>" + difference + "</td><td>" +
+                        totalBilled + "</td>")
 
                     $("#table").append(newRow);
                 });
